@@ -1,0 +1,106 @@
+//Problem 1
+#include <iostream>
+
+using namespace std;
+
+static int FunctionCount = 0;
+bool AND(bool a, bool b)
+{
+	if (a && b)
+	{
+		FunctionCount++;
+		return true;
+	}
+	else
+	{
+		FunctionCount++;
+		return false;
+	}	
+}
+bool OR(bool a, bool b)
+{
+	if(a || b)
+	{
+		FunctionCount++;
+		return true;
+	}
+	else
+	{
+		FunctionCount++;
+		return false;
+	}
+}
+bool NOT(bool a)
+{
+	if(a)
+	{
+		FunctionCount++
+		return false;
+	}
+	else
+	{
+		FunctionCount++;
+		return true;
+	}
+}
+void printFunctioncount()
+{
+	cout << FunctionCount << endl;
+}
+void print(bool a)
+{
+	cout << a << endl;
+}
+void resetFunctionCount()
+{
+	FunctionCount = 0;
+}
+
+bool XOR(bool output, bool p, bool q)
+{
+	bool np = not(p);
+	bool nq = not(q);
+	bool npq = and(np,q);
+	bool nqp = and(nq,p);
+	bool ans = or(npq,nqp);
+	output = ans;
+	
+	return 0;
+}
+bool MUX(bool operation,bool ifTrue, bool ifFalse)
+{
+	bool ns = NOT(operation);
+	bool nsa = AND(ns,ifTrue);
+	bool sb = AND(operation,ifFalse);
+	bool ans = OR(nsa,sb);
+	
+	return ans;
+}
+bool SUM(bool p, bool q)
+{
+	return XOR(p,q);
+}
+bool SUM3(bool a,bool b,bool b)
+{
+	bool apb = SUM(a,b);
+	bool ans = SUM(apb,c);
+	
+	return ans;
+}
+bool CarryOut(bool a, bool b, bool c)
+{
+	bool ab = AND(a,b);
+	bool bc = AND(b,c);
+	bool ac = AND(a,c);
+	bool abORbc = OR(ab,bc);
+	bool ans = OR(abORbc,ac);
+	
+	return ans;
+}
+bool equal(bool a, bool b)
+{
+	bool xorab = XOR(a,b);
+	bool ans = NOT(xorab);
+	
+	return ans;
+}
